@@ -309,3 +309,24 @@ button{
     background-color: rgb(0, 214, 214);
     transition: .3s;
 }
+
+.info{
+    width: 350px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    right: 40px;
+}
+
+.info > div{
+    background-color: orange;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+}

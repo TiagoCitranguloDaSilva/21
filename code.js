@@ -32,7 +32,9 @@ for(let e = 0; e < 8; e++){
     }
 }
 
-var saldo = 1500
+var saldoUser = 1500
+var saldoAd = 1500
+var apostaFeita;
 
 aposta();
 
@@ -50,7 +52,7 @@ function aposta(){
     let menuAposta = document.getElementById('aposta')
     let carteira = document.getElementById('valor');
     menuAposta.style.display = 'flex';
-    carteira.innerHTML = '$'+saldo;
+    carteira.innerHTML = '$'+saldoUser;
     // darCartas();
 }
 
@@ -58,10 +60,12 @@ function ficha(elemento){
     let numToAdd = elemento.innerHTML.slice(1);
     let mont = document.getElementById('montante');
     let total = Number(mont.innerHTML.slice(1)) + Number(numToAdd);
-    if(total > saldo){
-        mont.innerHTML = '$'+saldo;
+    if(total > saldoUser){
+        mont.innerHTML = '$'+saldoUser;
+        apostaFeita = saldoUser;
     }else{
         mont.innerHTML = '$'+total;
+        apostaFeita = total;
     }
 }
 
@@ -69,6 +73,12 @@ function ficha(elemento){
 function finalizarAposta(){
     let menuAposta = document.getElementById('aposta')
     menuAposta.style.display = 'none';
+    let aposta = document.getElementById('valorApostaAd');
+    aposta.innerHTML = apostaFeita;
+    aposta = document.getElementById('valorApostaUser');
+    aposta.innerHTML = apostaFeita;
+    saldoAd -= apostaFeita;
+    saldoUser -= apostaFeita;
     darCartas();
 }
 
@@ -151,20 +161,24 @@ function contagem(lugar){
         }
     }
     if(lugar == maoAdversario){
+        let saldoCaixa = document.getElementById('saldoAtualAd');
+        saldoCaixa.innerHTML = '$'+saldoAd;
         contAd.innerHTML = soma;
         if(Number(contAd.innerHTML) > 21){
-            setTimeout(telaFinal, 1000, 'A casa estourou! Você ganhou!');
+            setTimeout(telaFinal, 1000, 'A casa estourou! Você ganhou!', 'user');
         }else if(Number(contAd.innerHTML) == 21){
-            setTimeout(telaFinal, 1000, 'A casa fez um Blackjack');
+            setTimeout(telaFinal, 1000, 'A casa fez um Blackjack', 'ad');
         }
     }else{
         contUser.innerHTML = soma;
+        let saldoCaixa = document.getElementById('saldoAtualUser');
+        saldoCaixa.innerHTML = '$'+saldoUser;
         if(Number(contUser.innerHTML) > 21){
             stop(true);
-            setTimeout(telaFinal, 1000, 'Você estourou! A casa ganhou!');
+            setTimeout(telaFinal, 1000, 'Você estourou! A casa ganhou!', 'ad');
         }else if(Number(contUser.innerHTML) == 21){
             stop(true);
-            setTimeout(telaFinal, 1000, 'Você fez um Blackjack');
+            setTimeout(telaFinal, 1000, 'Você fez um Blackjack', 'user');
         }
     }
 }
@@ -178,7 +192,12 @@ function stop( notAd = false){
     }
 }
 
-function telaFinal(texto){
+function telaFinal(texto, win){
+    if(win == 'ad'){
+        saldoAd += (apostaFeita*2)
+    }else if(win == 'user'){
+        saldoUser += (apostaFeita*2)
+    }
     let msg = document.getElementById('msg');
     setTimeout(()=>{
         let tela = document.getElementById('telaFinal');
@@ -217,11 +236,11 @@ function final(){
 
     if(Number(contAd.innerHTML) <=21 && Number(contUser.innerHTML) <= 21){
         if(Number(contAd.innerHTML) > Number(contUser.innerHTML)){
-            setTimeout(telaFinal, 1000, 'A casa ganhou!');
+            setTimeout(telaFinal, 1000, 'A casa ganhou!', 'ad');
         }else if(Number(contAd.innerHTML) < Number(contUser.innerHTML)){
-            setTimeout(telaFinal, 1000, 'Você ganhou!');
+            setTimeout(telaFinal, 1000, 'Você ganhou!', 'user');
         }else{
-            setTimeout(telaFinal, 1000, 'Houve um empate!');
+            setTimeout(telaFinal, 1000, 'Houve um empate!', 'emp');
         }
     }
 }
@@ -230,6 +249,8 @@ function novoJogo(){
     setTimeout(()=>{
         let tela = document.getElementById('telaFinal');
         tela.style.display = 'none';
+        let mont = document.getElementById('montante');
+        mont.innerHTML = '$0';
         aposta()
     }, 500);
 }
