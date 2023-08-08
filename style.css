@@ -111,3 +111,62 @@ main{
 .tirar{
     pointer-events: none;
 }
+
+#telaFinal{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+}
+
+#menu{
+    width: 600px;
+    height: 260px;
+    background-color: #b8530b;
+    border: 8px solid #642500;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+
+#buttons{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    align-items: center;
+    justify-items: center;
+    width: 90%;
+}
+
+button{
+    cursor: pointer;
+}
+
+#buttons button{
+    display: block;
+    width: 120px;
+    height: 80px;
+    background-color: lightskyblue;
+    color: white;
+    border: 1px solid white;
+    transition: .3s;
+    font-size: 1.5em;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .15);
+    border-radius: 7px;
+
+}
+
+#buttons button:hover{
+    background-color: #74b1d6;
+    transition: .3s;
+}
+
+#buttons button:active{
+    box-shadow: none;
+    transition: .3s;
+}
