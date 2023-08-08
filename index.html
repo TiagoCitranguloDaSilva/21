@@ -33,11 +33,33 @@
     </main>
     <aside>
         <div id="telaFinal">
+            <div id="mensagem">
+                <p id="msg"></p>
+            </div>
             <div id="menu">
                 <div id="buttons">
                     <button onclick="novoJogo()">Próxima rodada</button>
-                    <button>Algo</button>
-                    <button>Algo</button>
+                </div>
+            </div>
+        </div>
+        <div id="aposta">
+            <div id="valores">
+                <div id="fichas">
+                    <button id="fichaValor5" class="fichas" onclick='ficha(this)'>$5</button>
+                    <button id="fichaValor25" class="fichas" onclick='ficha(this)'>$25</button>
+                    <button id="fichaValor100" class="fichas" onclick='ficha(this)'>$100</button>
+                    <button id="fichaValor500" class="fichas" onclick='ficha(this)'>$500</button>
+                </div>
+                <div id="info">
+                    <div id="atual">
+                        <p class="textoApoio">Montante atual:</p>
+                        <p id="montante" class="valorTotal"></p>
+                    </div>
+                    <button id="finalizarAposta" onclick="finalizarAposta()">Apostar</button>
+                    <div id="saldo">
+                        <p class="textoApoio">Saldo atual:</p>
+                        <p id="valor" class="valorTotal"></p>
+                    </div>
                 </div>
             </div>
         </div>

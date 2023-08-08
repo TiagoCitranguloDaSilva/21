@@ -6,6 +6,7 @@ var maoUsuario = document.getElementById('mao');
 var pesca = document.getElementById('pesca');
 var contUser = document.getElementById('user');
 var contAd = document.getElementById('adver');
+document.getElementById('montante').innerHTML = '$0';
 
 for(let e = 0; e < 8; e++){
     for(let d = 0; d < naipes.length; d++){
@@ -31,22 +32,51 @@ for(let e = 0; e < 8; e++){
     }
 }
 
-darCartas();
+var saldo = 1500
+
+aposta();
 
 
-let carta = document.createElement('div');
-carta.classList.add('escondida');
-carta.classList.add('cartas');
-pesca.appendChild(carta);
+// let carta = document.createElement('div');
+// carta.classList.add('escondida');
+// carta.classList.add('cartas');
+// pesca.appendChild(carta);
 
 
-contagem(maoAdversario);
-contagem(maoUsuario);
+// contagem(maoAdversario);
+// contagem(maoUsuario);
+
+function aposta(){
+    let menuAposta = document.getElementById('aposta')
+    let carteira = document.getElementById('valor');
+    menuAposta.style.display = 'flex';
+    carteira.innerHTML = '$'+saldo;
+    // darCartas();
+}
+
+function ficha(elemento){
+    let numToAdd = elemento.innerHTML.slice(1);
+    let mont = document.getElementById('montante');
+    let total = Number(mont.innerHTML.slice(1)) + Number(numToAdd);
+    if(total > saldo){
+        mont.innerHTML = '$'+saldo;
+    }else{
+        mont.innerHTML = '$'+total;
+    }
+}
 
 
-
+function finalizarAposta(){
+    let menuAposta = document.getElementById('aposta')
+    menuAposta.style.display = 'none';
+    darCartas();
+}
 
 function darCartas(){
+    maoAdversario.innerText = '';
+    maoUsuario.innerText = '';
+    console.log(maoAdversario.children.length)
+    console.log(maoUsuario.children.length)
     let carta;
     for(let c = 0; c < 2; c++){
         switch(c){
@@ -65,6 +95,10 @@ function darCartas(){
         }
 
     }
+    contagem(maoAdversario);
+    contagem(maoUsuario);
+    let main = document.getElementById('prin');
+    main.style.pointerEvents = 'all';
 }
 
 function aleatorizar(){
@@ -119,18 +153,18 @@ function contagem(lugar){
     if(lugar == maoAdversario){
         contAd.innerHTML = soma;
         if(Number(contAd.innerHTML) > 21){
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'A casa estourou! Você ganhou!');
         }else if(Number(contAd.innerHTML) == 21){
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'A casa fez um Blackjack');
         }
     }else{
         contUser.innerHTML = soma;
         if(Number(contUser.innerHTML) > 21){
             stop(true);
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'Você estourou! A casa ganhou!');
         }else if(Number(contUser.innerHTML) == 21){
             stop(true);
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'Você fez um Blackjack');
         }
     }
 }
@@ -144,10 +178,12 @@ function stop( notAd = false){
     }
 }
 
-function telaFinal(){
+function telaFinal(texto){
+    let msg = document.getElementById('msg');
     setTimeout(()=>{
         let tela = document.getElementById('telaFinal');
-        tela.style.display = 'flex';
+        tela.style.display = 'grid';
+        msg.innerHTML = texto;
     }, 500);
     
 }
@@ -158,12 +194,22 @@ function adversario(){
     }
     contagem(maoAdversario);
     
-    for(let c = 0; c < 5; c++){
-        if(Number(contAd.innerHTML) <= 16 && c < 5){
-            add();
-        }
-    } 
-    setTimeout(final, 1500);
+    let contador = 0;
+    if(Number(contAd.innerHTML) <= 16){
+    let intervalo = setInterval(()=>{
+            contador++;
+            if(Number(contAd.innerHTML) <= 16 && contador < 5){
+                add();
+            }
+            if(contador >= 5){
+                clearInterval(intervalo)
+            }
+        }, 1500);
+        setTimeout(final, (contador*500)+500);
+    }else{
+        setTimeout(final, 1000);
+    }
+    
 }
 
 
@@ -171,17 +217,19 @@ function final(){
 
     if(Number(contAd.innerHTML) <=21 && Number(contUser.innerHTML) <= 21){
         if(Number(contAd.innerHTML) > Number(contUser.innerHTML)){
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'A casa ganhou!');
         }else if(Number(contAd.innerHTML) < Number(contUser.innerHTML)){
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'Você ganhou!');
         }else{
-            telaFinal()
+            setTimeout(telaFinal, 1000, 'Houve um empate!');
         }
     }
 }
 
 function novoJogo(){
     setTimeout(()=>{
-        window.location.reload();
+        let tela = document.getElementById('telaFinal');
+        tela.style.display = 'none';
+        aposta()
     }, 500);
 }
