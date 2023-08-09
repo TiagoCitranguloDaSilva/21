@@ -6,8 +6,8 @@
 }
 
 :root{
-    --largCarta: 85px;
-    --altCarta: 140px;
+    --largCarta: 90px;
+    --altCarta: 150px;
 }
 
 body{
@@ -15,7 +15,11 @@ body{
 }
 
 .cartas{
-    background-color: yellow;
+    background-image: url('img/CartaPadrao.jpg');
+    background-color: white;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
     height: var(--altCarta);
     width: var(--largCarta);
     margin: 5px;
@@ -23,11 +27,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.escondida{
-    background-color: purple;
-    font-size: 0;
 }
 
 main{
@@ -47,7 +46,16 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: brown;
+    background-color: #913500;
+    box-sizing: border-box;
+}
+
+#usuario{
+    border-top: 30px solid #662500;
+}
+
+#ad{
+    border-bottom: 30px solid #662500;
 }
 
 #centro{
@@ -56,14 +64,14 @@ main{
 }
 
 #monte{
-    background-color: green;
+    background-color: #005018;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #resto{
-    background-color: blue;
+    background-color: #005018;
 }
 
 
@@ -84,28 +92,44 @@ main{
     height: 100px;
     position: absolute;
     left: 40px;
-    background-color: orange;
+    background-color: #f87800;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 3em;
+    border-radius: 2px;
+    box-sizing: border-box;
 }
 
 #botoes{
-    background-color: cyan;
+    background-color: #005018;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+
 }
 
 #escolha{
-    grid-template-columns: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     height: min-content;
+    width: 300px;
+
 }
 
 #escolha button{
-    width: 60px;
+    width: 100px;
     height: 60px;
+    background-color: lightskyblue;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .15);
+}
+
+#escolha button:hover{
+    background-color: rgb(115, 175, 212);
 }
 
 .tirar{
@@ -193,6 +217,7 @@ button{
     color: white;
     -webkit-text-stroke: 2px white;
     font-size: 2em;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .19);
 }
 
 #fichaValor5{
@@ -231,6 +256,7 @@ button{
     grid-template-rows: 1fr 1fr;
     align-items: center;
     justify-content: center;
+    border-top-color: #471a00;
 }
 
 #fichas{
@@ -262,6 +288,7 @@ button{
     border: 2px solid black;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .15);
     border-radius: 8px;
+    padding-top: 6px;
 }
 
 #saldo{
@@ -274,8 +301,8 @@ button{
 
 .textoApoio{
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 12px;
+    left: 14px;
     color: white;
 }
 
@@ -287,7 +314,7 @@ button{
 }
 
 #atual{
-    background-color: darkseagreen;
+    background-color: rgb(115, 172, 115);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -310,6 +337,12 @@ button{
     transition: .3s;
 }
 
+#finalizarAposta:disabled{
+    background-color: lightgray;
+    color: gray;
+    cursor: auto;
+}
+
 .info{
     width: 350px;
     display: grid;
@@ -321,7 +354,7 @@ button{
 }
 
 .info > div{
-    background-color: orange;
+    background-color: #db7c00;
     width: 100px;
     height: 100px;
     position: relative;
@@ -329,4 +362,32 @@ button{
     align-items: center;
     justify-content: center;
     width: 150px;
+    border-radius: 10px;
+    border: 6px solid #7c4600;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.escondida{
+    background-image: url('img/FundoCarta.png');
+    background-color: white;
+    background-size: cover;
+    font-size: 0em;
+}
+
+#maxMin{
+    position: absolute;
+    top: 115px;
+    font-size: 2em;
+    background-color: color;
+    font-weight: 700;
+    background-color: #642500;
+    padding: 10px 10px 0px 10px;
+    border: 5px solid #642500;
+    border-left: 7px solid #642500;
+    border-right: 7px solid #642500;
+    border-bottom: 2px solid #642500;
+    border-color: #471a00;
+    color: rgb(180, 171, 162);
+    /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 1); */
 }

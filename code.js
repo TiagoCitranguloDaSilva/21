@@ -8,6 +8,7 @@ var contUser = document.getElementById('user');
 var contAd = document.getElementById('adver');
 document.getElementById('montante').innerHTML = '$0';
 
+
 for(let e = 0; e < 8; e++){
     for(let d = 0; d < naipes.length; d++){
         for(let c = 1; c <= 13; c++){
@@ -49,6 +50,7 @@ aposta();
 // contagem(maoUsuario);
 
 function aposta(){
+    document.getElementById("finalizarAposta").disabled = true;
     let menuAposta = document.getElementById('aposta')
     let carteira = document.getElementById('valor');
     menuAposta.style.display = 'flex';
@@ -60,13 +62,19 @@ function ficha(elemento){
     let numToAdd = elemento.innerHTML.slice(1);
     let mont = document.getElementById('montante');
     let total = Number(mont.innerHTML.slice(1)) + Number(numToAdd);
-    if(total > saldoUser){
+    if(total >= 10){
+        document.getElementById("finalizarAposta").disabled = false;
+    }
+    if(total > saldoUser && total <= 500){
         mont.innerHTML = '$'+saldoUser;
         apostaFeita = saldoUser;
+    }else if(total > 500){
+        apostaFeita = 500;
     }else{
         mont.innerHTML = '$'+total;
         apostaFeita = total;
     }
+        
 }
 
 
@@ -77,16 +85,19 @@ function finalizarAposta(){
     aposta.innerHTML = apostaFeita;
     aposta = document.getElementById('valorApostaUser');
     aposta.innerHTML = apostaFeita;
+
     saldoAd -= apostaFeita;
+
     saldoUser -= apostaFeita;
+    
+
+    
     darCartas();
 }
 
 function darCartas(){
     maoAdversario.innerText = '';
     maoUsuario.innerText = '';
-    console.log(maoAdversario.children.length)
-    console.log(maoUsuario.children.length)
     let carta;
     for(let c = 0; c < 2; c++){
         switch(c){
@@ -192,18 +203,32 @@ function stop( notAd = false){
     }
 }
 
-function telaFinal(texto, win){
+function telaFinal(texto, win, reload = false){
     if(win == 'ad'){
         saldoAd += (apostaFeita*2)
     }else if(win == 'user'){
         saldoUser += (apostaFeita*2)
     }
+    if(saldoUser <= 0){
+        alert('Você ficou sem fichas!',);
+        window.location.reload()
+    }
+    if(saldoAd <= 0){
+        alert('A casa ficou sem fichas!');
+        window.location.reload()
+    }
     let msg = document.getElementById('msg');
-    setTimeout(()=>{
-        let tela = document.getElementById('telaFinal');
-        tela.style.display = 'grid';
-        msg.innerHTML = texto;
-    }, 500);
+    if(reload){
+        alert(texto);
+        window.location.reload()   
+    }else{
+        setTimeout(()=>{
+            let tela = document.getElementById('telaFinal');
+            tela.style.display = 'grid';
+            msg.innerHTML = texto;
+        }, 500);
+    }
+    
     
 }
 
@@ -214,10 +239,10 @@ function adversario(){
     contagem(maoAdversario);
     
     let contador = 0;
-    if(Number(contAd.innerHTML) <= 16){
+    if(Number(contAd.innerHTML) <= 16 && Number(contUser.innerHTML < Number(contAd.innerHTML))){
     let intervalo = setInterval(()=>{
             contador++;
-            if(Number(contAd.innerHTML) <= 16 && contador < 5){
+            if(Number(contAd.innerHTML) <= 16 && contador < 5 && Number(contUser.innerHTML >= Number(contAd.innerHTML))){
                 add();
             }
             if(contador >= 5){
@@ -251,6 +276,7 @@ function novoJogo(){
         tela.style.display = 'none';
         let mont = document.getElementById('montante');
         mont.innerHTML = '$0';
+        
         aposta()
     }, 500);
 }
