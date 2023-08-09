@@ -274,7 +274,7 @@ button{
 
 #info{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
     justify-content: center;
     justify-items: center;
@@ -282,7 +282,7 @@ button{
     width: 100%;
 }
 
-#saldo, #atual{
+.saldo, #atual{
     width: 160px;
     height: 100px;
     position: relative;
@@ -292,7 +292,7 @@ button{
     padding-top: 6px;
 }
 
-#saldo{
+.saldo{
     background-color: coral;
     display: flex;
     align-items: center;
@@ -303,7 +303,7 @@ button{
 .textoApoio{
     position: absolute;
     top: 12px;
-    left: 14px;
+    left: 11px;
     color: white;
 }
 
@@ -391,4 +391,33 @@ button{
     border-bottom: 4px solid #3d1600;
     color: rgb(180, 171, 162);
     /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 1); */
+}
+
+#operacao{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    width: 160px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .15);
+    border-radius: 8px;
+}
+
+#operacao button{
+    width: 160px;
+    height: 50px;
+    font-size: 3em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mais{
+    background-color: red;
+    border: 5px solid #a70000;
+}
+
+#menos{
+    background-color: blue;
+    border: 5px solid #0000b6;
 }

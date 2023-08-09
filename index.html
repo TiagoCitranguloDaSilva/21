@@ -77,9 +77,17 @@
                         <p class="textoApoio">Montante atual:</p>
                         <p id="montante" class="valorTotal"></p>
                     </div>
+                    <div id='operacao'>
+                        <button id="mais" onclick="mais()">+</button>
+                        <button id="menos" onclick="menos()">-</button>
+                    </div>
                     <button id="finalizarAposta" onclick="finalizarAposta()">Apostar</button>
-                    <div id="saldo">
-                        <p class="textoApoio">Saldo atual:</p>
+                    <div class="saldo">
+                        <p class="textoApoio">Saldo atual da casa:</p>
+                        <p id="valorAd" class="valorTotal"></p>
+                    </div>
+                    <div class="saldo">
+                        <p class="textoApoio">Seu saldo atual:</p>
                         <p id="valor" class="valorTotal"></p>
                     </div>
                 </div>

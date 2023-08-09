@@ -49,12 +49,41 @@ aposta();
 // contagem(maoAdversario);
 // contagem(maoUsuario);
 
+function mais(){
+    let botaoMenos = document.getElementById('menos');
+    if(botaoMenos.disabled){
+        botaoMenos.style.backgroundColor = 'blue';
+        // botaoMenos.style.border = '5px solid #0000b6';
+        botaoMenos.disabled = false;
+    }
+    let botao = document.getElementById('mais');
+    botao.style.backgroundColor = '#ff9f9f';
+    // botao.style.border = 'none';
+    botao.disabled = true;
+}
+
+function menos(){
+    let botaoMais = document.getElementById('mais');
+    if(botaoMais.disabled){
+        botaoMais.style.backgroundColor = 'red';
+        // botaoMais.style.border = '5px solid #a70000';
+        botaoMais.disabled = false;
+    }
+    let botao = document.getElementById('menos');
+    botao.style.backgroundColor = '#7b7bff';
+    // botao.style.border = 'none';
+    botao.disabled = true;
+}
+
 function aposta(){
+    mais()
     document.getElementById("finalizarAposta").disabled = true;
     let menuAposta = document.getElementById('aposta')
     let carteira = document.getElementById('valor');
+    let carteiraAd = document.getElementById('valorAd')
     menuAposta.style.display = 'flex';
     carteira.innerHTML = '$'+saldoUser;
+    carteiraAd.innerHTML = '$'+saldoAd;
     // darCartas();
 }
 
@@ -70,6 +99,10 @@ function ficha(elemento){
         apostaFeita = saldoUser;
     }else if(total > 500){
         apostaFeita = 500;
+    }else if(total > saldoAd && total <= 500){
+        mont.innerHTML = '$'+saldoAd;
+        apostaFeita = saldoAd;
+        contAd.innerHTML = '$0';
     }else{
         mont.innerHTML = '$'+total;
         apostaFeita = total;
