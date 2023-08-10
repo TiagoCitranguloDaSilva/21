@@ -249,7 +249,7 @@ button{
 
 #valores{
     position: relative;
-    width: min-content;
+    width: 900px;
     height: min-content;
     background-color: #b8530b;
     border: 8px solid #642500;
@@ -265,6 +265,14 @@ button{
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-content: space-around;
+    justify-items: center;
+    width: min-content;
+}
+
+#containerFichas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #fichas button{
@@ -390,6 +398,7 @@ button{
     border: 1px solid #3d1600;
     border-bottom: 4px solid #3d1600;
     color: rgb(180, 171, 162);
+    width: 900px;
     /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 1); */
 }
 

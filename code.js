@@ -1,4 +1,6 @@
 
+var minimo = 10;
+var maximo = 500;
 var cartasPossiveis = [];
 var naipes = ['espadas', 'ouro', 'paus', 'copas'];
 var maoAdversario = document.getElementById('maoAd');
@@ -7,6 +9,7 @@ var pesca = document.getElementById('pesca');
 var contUser = document.getElementById('user');
 var contAd = document.getElementById('adver');
 document.getElementById('montante').innerHTML = '$0';
+document.getElementById('maxMin').innerHTML = 'Aposta mínima: ' + minimo + ' - Aposta máxima: ' + maximo;
 
 
 for(let e = 0; e < 8; e++){
@@ -90,16 +93,27 @@ function aposta(){
 function ficha(elemento){
     let numToAdd = elemento.innerHTML.slice(1);
     let mont = document.getElementById('montante');
-    let total = Number(mont.innerHTML.slice(1)) + Number(numToAdd);
-    if(total >= 10){
-        document.getElementById("finalizarAposta").disabled = false;
+    let total;
+    if(document.getElementById('mais').disabled){
+        total = Number(mont.innerHTML.slice(1)) + Number(numToAdd);
+    }else{
+        if(Number(mont.innerHTML.slice(1)) - Number(numToAdd) < 0){
+            total = 0;
+        }else{
+            total = Number(mont.innerHTML.slice(1)) - Number(numToAdd);
+        }   
     }
-    if(total > saldoUser && total <= 500){
+    if(total >= minimo){
+        document.getElementById("finalizarAposta").disabled = false;
+    }else{
+        document.getElementById("finalizarAposta").disabled = true;
+    }
+    if(total > saldoUser && total <= maximo){
         mont.innerHTML = '$'+saldoUser;
         apostaFeita = saldoUser;
-    }else if(total > 500){
+    }else if(total > maximo){
         apostaFeita = 500;
-    }else if(total > saldoAd && total <= 500){
+    }else if(total > saldoAd && total <= maximo){
         mont.innerHTML = '$'+saldoAd;
         apostaFeita = saldoAd;
         contAd.innerHTML = '$0';
@@ -238,16 +252,20 @@ function stop( notAd = false){
 
 function telaFinal(texto, win, reload = false){
     if(win == 'ad'){
-        saldoAd += (apostaFeita*2)
+        saldoAd += (apostaFeita*2);
     }else if(win == 'user'){
-        saldoUser += (apostaFeita*2)
+        saldoUser += (apostaFeita*2);
+    }else if(win == 'emp'){
+        saldoUser += apostaFeita;
+        saldoAd += apostaFeita;
+
     }
-    if(saldoUser <= 0){
-        alert('Você ficou sem fichas!',);
+    if(saldoUser <= 0 || saldoUser < minimo){
+        alert('Você não tem fichas o suficiente para continuar!',);
         window.location.reload()
     }
-    if(saldoAd <= 0){
-        alert('A casa ficou sem fichas!');
+    if(saldoAd <= 0 || saldoAd < minimo){
+        alert('A casa não tem fichas o suficiente para continuar!');
         window.location.reload()
     }
     let msg = document.getElementById('msg');
@@ -272,17 +290,19 @@ function adversario(){
     contagem(maoAdversario);
     
     let contador = 0;
-    if(Number(contAd.innerHTML) <= 16 && Number(contUser.innerHTML < Number(contAd.innerHTML))){
-    let intervalo = setInterval(()=>{
+    if((Number(contAd.innerHTML) <= 15) && (Number(contUser.innerHTML) > Number(contAd.innerHTML))){
+        let intervalo = setInterval(()=>{
             contador++;
-            if(Number(contAd.innerHTML) <= 16 && contador < 5 && Number(contUser.innerHTML >= Number(contAd.innerHTML))){
+            if(Number(contAd.innerHTML) <= 15 && contador < 5 && Number(contUser.innerHTML >= Number(contAd.innerHTML))){
                 add();
             }
-            if(contador >= 5){
-                clearInterval(intervalo)
+            if(contador >= 5 || Number(contUser.innerHTML) <= Number(contAd.innerHTML)){
+                setTimeout(()=>{
+                    clearInterval(intervalo)
+                }, 1500)
             }
         }, 1500);
-        setTimeout(final, (contador*500)+500);
+        setTimeout(final, 1500);
     }else{
         setTimeout(final, 1000);
     }
