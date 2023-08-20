@@ -545,105 +545,202 @@ function adversario(){
 
     // Atualiza a contagem do adversário
     contagem(maoAdversario);
-    
 
-
-
-
-
-
-    
+    // Cria um contador e inicia o valor dele como 0
     let contador = 0;
+
+    // Se a contagem do adversário for menor ou igual a 15 e o contador do usuário for maior que o do adversário
     if((Number(contAd.innerHTML) <= 15) && (Number(contUser.innerHTML) > Number(contAd.innerHTML))){
+
+        // Começa um intervalo de repetição
         let intervalo = setInterval(()=>{
+
+            // Adiciona 1 ao contador
             contador++;
+
+            // Se a contagem do adversário for menor ou igual a 15 e o contador do usuário for maior que o do adversário
             if(Number(contAd.innerHTML) <= 15 && contador < 5 && Number(contUser.innerHTML >= Number(contAd.innerHTML))){
-                adicionar();
+
+                // Da uma carta ao adversário
+                adicionar('ad');
+
             }
+
+            // Se o contador for maior ou igual a 5 ou o contador do usuário for menor ou igual ao contador do adversário
             if(contador >= 5 || Number(contUser.innerHTML) <= Number(contAd.innerHTML)){
+
+                // Espera 1 segundo e meio
                 setTimeout(()=>{
+
+                    // Limpa o intervalo
                     clearInterval(intervalo)
+
                 }, 1500)
             }
         }, 1500);
+
+        // Chama a função final depois de 1 segundo e meio
         setTimeout(final, 1500);
+
     }else{
-        setTimeout(final, 1000);
+
+        // Chama a função final depois de 1 segundo
+        setTimeout(final, 1500);
+
     }
-    
 }
 
-function adicionar(lugar = 'ad'){
+// Função que adiciona cartas em algum lugar
+function adicionar(lugar){
+
+    // guarda uma carta crida por um valor aleatório, sem classes extras e que tira a carta das cartas possiveis
     carta = criarCarta(aleatorizar(), [], true);
+
+    // Se o lugar que você quer adicionar a carta é o usuário
     if(lugar == 'mao'){
+
+        // Adiciona a carta no usuário
         maoUsuario.appendChild(carta);
+
+        // Atualiza o contador do usuário
         contagem(maoUsuario);
+
+    // Se o lugar que você quer adicionar a carta é o adversário
     }else if(lugar == 'ad'){
+
+        // Adiciona a carta no adversário
         maoAdversario.appendChild(carta);
+
+        // Atualiza a contagem do adversário
         contagem(maoAdversario);
+
     }
 }
 
-
-
-
-
+// Uma função chamada ao terminar o jogo, uma 'tela final', que recebe uma mensagem, o vencedor e se deve recarregar a página
 function telaFinal(texto, win, reload = false){
+
+    // Se o adversário ganhou
     if(win == 'ad'){
+
+        // O adversário ganha o dinheiro da aposta
         saldoAd += (apostaFeita*2);
+
+    // Se o usuário ganhar
     }else if(win == 'user'){
+
+        // O usuário ganha o dinheiro da aposta
         saldoUser += (apostaFeita*2);
+
+    // Se der empate
     }else if(win == 'emp'){
+
+        // Todos recebem seu dinheiro de volta
         saldoUser += apostaFeita;
+
+        // Todos recebem seu dinheiro de volta
         saldoAd += apostaFeita;
 
     }
+
+    // Se o usuário não tiver dinheiro o suficiente pra continuar jogando
     if(saldoUser <= 0 || saldoUser < minimo){
-        alert('Você não tem fichas o suficiente para continuar!',);
-        window.location.reload()
+
+        // Avisa que o usuário não pode continuar
+        alert('Você não tem fichas o suficiente para continuar!');
+
+        // Recarrega a página
+        window.location.reload();
+
     }
+
+    // Se o adversário não tiver dinheiro para continuar jogando
     if(saldoAd <= 0 || saldoAd < minimo){
+
+        // Avisa que a casa não pode continuar
         alert('A casa não tem fichas o suficiente para continuar!');
-        window.location.reload()
+
+        // Recarrega a página
+        window.location.reload();
+
     }
+
+    // Pega a caixa que vai receber a mensagem de vitória ou derrota
     let msg = document.getElementById('msg');
+
+    // Se for pra recarregar a página
     if(reload){
+
+        // Mostra a mensagem
         alert(texto);
-        window.location.reload()   
+
+        // Recarrega a página
+        window.location.reload();
+
     }else{
+
+        // Espera um tempinho
         setTimeout(()=>{
+
+            // Pega a tela final
             let tela = document.getElementById('telaFinal');
+
+            // Faz ela aparecer
             tela.style.display = 'grid';
+
+            // Coloca a mensagem na tela final
             msg.innerHTML = texto;
+
         }, 500);
     }
-    
-    
 }
 
-
-
-
+// Função chamada para ver se a rodada acabou ou se deve continuar
 function final(){
 
+    // Se o contador do adversário for menor ou  igual a 21 e contador do usuário for menor ou igual a 21
     if(Number(contAd.innerHTML) <=21 && Number(contUser.innerHTML) <= 21){
+
+        // Se o contador do adversário for maior que o contador do usuário
         if(Number(contAd.innerHTML) > Number(contUser.innerHTML)){
+
+            // Chama a tela final, depois de 1 segundo, dizendo que o adversário ganhou e tem a casa como vencedora
             setTimeout(telaFinal, 1000, 'A casa ganhou!', 'ad');
+
+        // Se o contador do adversário for menor que o contador do usuário
         }else if(Number(contAd.innerHTML) < Number(contUser.innerHTML)){
+
+            // Chama a tela final, depois de 1 segundo, dizendo que o usuário ganhou e tem o usuário como vencedor
             setTimeout(telaFinal, 1000, 'Você ganhou!', 'user');
         }else{
+
+            // Chama a tela final, depois de 1 segundo, dizendo que o ninguem ganhou e teve um empate
             setTimeout(telaFinal, 1000, 'Houve um empate!', 'emp');
+
         }
     }
 }
 
+// Função chamada ao clicar em 'Próxima rodada'
 function novoJogo(){
+
+    // Espera um tempinho
     setTimeout(()=>{
+
+        // Pega a tela final
         let tela = document.getElementById('telaFinal');
+
+        // Faz a tela final sumir
         tela.style.display = 'none';
+
+        // Pega o montante de aposta
         let mont = document.getElementById('montante');
+
+        // Zera o montante
         mont.innerHTML = '$0';
         
-        aposta()
+        // Chama a função pra pegar as apostas
+        aposta();
+        
     }, 500);
 }
