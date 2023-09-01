@@ -448,10 +448,16 @@ function contagem(lugar){
                     valor = 10;
                     break;
 
+                // De resto
+                default:
+
+                    //  O valor é igual ao conteúdo
+                    valor = conteudo;
+
             }
 
             // Vai somar o valor na variável 'soma'
-            soma += Number(conteudo);
+            soma += Number(valor);
 
         }
     }
