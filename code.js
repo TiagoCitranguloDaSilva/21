@@ -177,7 +177,7 @@ function botaoMenos(){
 function ficha(elemento){
 
     // Pega o valor da ficha clicada
-    let numToAdd = elemento.innerHTML.slice(1);
+    let numToAdd = elemento.children[0].children[0].innerHTML.slice(1);
 
     // Pega o montante, que é uma caixa que guarda o valor da aposta atual
     let mont = document.getElementById('montante');
