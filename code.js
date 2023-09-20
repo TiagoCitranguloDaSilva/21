@@ -345,6 +345,7 @@ function darCartas(){
                 break;
 
         }
+
     }
 
     // Atualiza a contagem de valores da mão do adversário
@@ -352,6 +353,10 @@ function darCartas(){
     
     // Atualiza a contagem de valores da mão do usuário
     contagem(maoUsuario);
+
+    if(Number(contUser.innerHTML) == 21){
+        stop(true)
+    }
 
     // Pega a tela inteira
     let main = document.getElementById('prin');
@@ -565,28 +570,21 @@ function adversario(){
             contador++;
 
             // Se a contagem do adversário for menor ou igual a 15 e o contador do usuário for maior que o do adversário
-            if(Number(contAd.innerHTML) <= 15 && contador < 5 && Number(contUser.innerHTML >= Number(contAd.innerHTML))){
+            if(Number(contAd.innerHTML) <= 15 && contador <= 5 && Number(contUser.innerHTML >= Number(contAd.innerHTML))){
 
                 // Da uma carta ao adversário
                 adicionar('ad');
 
             }
-
             // Se o contador for maior ou igual a 5 ou o contador do usuário for menor ou igual ao contador do adversário
-            if(contador >= 5 || Number(contUser.innerHTML) <= Number(contAd.innerHTML)){
-
-                // Espera 1 segundo e meio
-                setTimeout(()=>{
-
-                    // Limpa o intervalo
-                    clearInterval(intervalo)
-
-                }, 1500)
+            if(contador > 5 || Number(contUser.innerHTML) <= Number(contAd.innerHTML)){
+                // Chama a função final
+                clearInterval(intervalo)
+                final()
             }
         }, 1500);
 
-        // Chama a função final depois de 1 segundo e meio
-        setTimeout(final, 1500);
+        
 
     }else{
 
@@ -708,7 +706,7 @@ function final(){
     if(Number(contAd.innerHTML) <=21 && Number(contUser.innerHTML) <= 21){
 
         // Se o contador do adversário for maior que o contador do usuário
-        if(Number(contAd.innerHTML) > Number(contUser.innerHTML)){
+        if(Number(contAd.innerHTML) > Number(contUser.innerHTML) && Number(contAd.innerHTML) != 21){
 
             // Chama a tela final, depois de 1 segundo, dizendo que o adversário ganhou e tem a casa como vencedora
             setTimeout(telaFinal, 1000, 'A casa ganhou!', 'ad');
@@ -718,7 +716,7 @@ function final(){
 
             // Chama a tela final, depois de 1 segundo, dizendo que o usuário ganhou e tem o usuário como vencedor
             setTimeout(telaFinal, 1000, 'Você ganhou!', 'user');
-        }else{
+        }else if(Number(contAd.innerHTML) == Number(contUser.innerHTML)){
 
             // Chama a tela final, depois de 1 segundo, dizendo que o ninguem ganhou e teve um empate
             setTimeout(telaFinal, 1000, 'Houve um empate!', 'emp');
