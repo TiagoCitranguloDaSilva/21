@@ -218,22 +218,49 @@ button{
     -webkit-text-stroke: 2px white;
     font-size: 2em;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .19);
+    position: relative;
 }
 
-#fichaValor5{
-    background-color: red;
+.fichaCentroN1{
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: rgb(204, 204, 204);
+    left: 50%;
+    top: 50%;
 }
 
-#fichaValor25{
-    background-color: green;
+.fichaCentroN2{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 1);
 }
 
-#fichaValor100{
-    background-color: black;
+#fichaValor5, #fichaValor5 .fichaCentroN2{
+    background-color: rgb(255, 23, 23);
 }
 
-#fichaValor500{
-    background-color: purple;
+#fichaValor25, #fichaValor25 .fichaCentroN2{
+    background-color: rgb(23, 128, 23);
+}
+
+#fichaValor100, #fichaValor100 .fichaCentroN2{
+    background-color: rgb(23, 0, 23);
+}
+
+#fichaValor500, #fichaValor500 .fichaCentroN2{
+    background-color: rgb(128, 31, 128);
 }
 
 #aposta{
