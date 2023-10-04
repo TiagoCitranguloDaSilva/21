@@ -227,7 +227,7 @@ button{
     border-radius: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    background-color: rgb(204, 204, 204);
+    background-color: rgba(224, 224, 224, 0.548);
     left: 50%;
     top: 50%;
 }
