@@ -6,12 +6,14 @@
 }
 
 :root{
-    --largCarta: 90px;
-    --altCarta: 150px;
+    --largCarta: 100px;
+    --altCarta: 170px;
 }
 
 body{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #016d22;
+    overflow: hidden;
 }
 
 .cartas{
@@ -59,21 +61,10 @@ main{
 }
 
 #centro{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
-#monte{
-    background-color: #005018;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-#resto{
-    background-color: #005018;
-}
-
 
 #montePesca{
     display: flex;
@@ -102,7 +93,8 @@ main{
 }
 
 #botoes{
-    background-color: #005018;
+    position: absolute;
+    right: 5%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -114,6 +106,7 @@ main{
     grid-template-columns: 1fr 1fr;
     height: min-content;
     width: 300px;
+    justify-items: center;
 
 }
 
@@ -385,7 +378,7 @@ button{
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-around;
+    justify-items: center;
     position: absolute;
     right: 40px;
 }
@@ -417,8 +410,7 @@ button{
     font-size: 2em;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: color;
+    justify-content: space-evenly;
     font-weight: 700;
     background-color: #642500;
     margin: 0;
@@ -427,7 +419,10 @@ button{
     border-bottom: 4px solid #3d1600;
     color: rgb(180, 171, 162);
     width: 900px;
-    /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 1); */
+}
+
+#maxMin p{
+    margin: 10px 20px;
 }
 
 #operacao{
@@ -440,7 +435,7 @@ button{
 }
 
 #operacao button{
-    width: 160px;
+    width: 100%;
     height: 50px;
     font-size: 3em;
     color: white;
@@ -458,3 +453,328 @@ button{
     background-color: blue;
     border: 5px solid #0000b6;
 }
+
+@media screen and (max-width: 1020px) and (min-width: 650px) and (min-height: 480px){
+
+    #botoes{
+        position: inherit;
+    }
+
+    #prin{
+        grid-template-rows: 2fr 1fr 2fr;
+    }
+
+    #usuario, #ad{
+        position: relative;
+    }
+
+    .info{
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: auto;
+        height: 100%;
+        width: min-content;
+    }
+
+    .info div{
+        height: 90px;
+        width: 140px;
+    }
+ 
+}
+
+@media screen and (max-width: 920px) {
+
+    #fichas button{
+        margin: 5px;
+    }
+
+    #atual, #operacao{
+        grid-row: 2 / 3;
+    }
+
+
+    #finalizarAposta{
+        grid-row: 1 / 3;
+        grid-column: 2;
+    }
+
+    #info{
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #info div{
+        width: 140px;
+        height: 90px;
+    }
+
+    #info div p{
+        top: 5px;
+    }
+
+    #maxMin{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        height: 120px;
+        width: 500px;
+    }
+
+    #valores{
+        width: 500px;
+        gap: 0px;
+        grid-template-rows: 1fr 120px 2fr;
+    }
+
+    #operacao button{
+        height: 45px;
+    }
+
+}
+
+@media screen and (max-width: 700px) and (min-height: 745px){
+    #fichas{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #fichas button{
+        margin: 3px;
+    }
+
+    #atual, #operacao{
+        grid-row: 2 / 3;
+    }
+
+
+    #finalizarAposta{
+        grid-row: 3 / 4;
+        grid-column: 1 / 3;
+    }
+
+    #info{
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        width: min-content;
+        column-gap: 10px;
+    }
+
+    #maxMin{
+        width: max-content;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        height: 120px;
+    }
+
+    #valores{
+        max-height: 100vh;
+
+        width: min-content;
+        gap: 0px;
+        grid-template-rows: 120px 250px 1fr;
+    }
+
+    .cartas{
+        width: 80px;
+        height: 130px;
+    }
+
+    #botoes{
+        position: inherit;
+    }
+
+}
+
+@media screen and (max-height: 600px) and (max-width: 400px){
+
+    #maxMin{
+        width: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        height: 120px;
+    }
+
+    #valores{
+        max-height: 100vh;
+        width: min-content;
+        gap: 0px;
+        grid-template-rows: 120px 120px 1fr;
+        padding-bottom: 10px;
+    }
+
+    #info{
+        width: min-content;
+        margin: auto;
+        column-gap: 5px;
+    }
+
+    .fichas{
+        width: 75px;
+        height: 75px;
+        font-size: 1.7em;
+    }
+
+    #fichas{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    #info div{
+        width: 100px;
+        height: 100px;
+    }
+
+
+    #info div p{
+        top: 2px;
+    }
+
+    #operacao button{
+        width: 100%;
+        height: 50px;
+        box-sizing: border-box;
+    }
+
+    #finalizarAposta{
+        width: min-content;
+        font-size: 1.2em;
+        padding: 10px;
+    }
+
+    #msg{
+        font-size: 3em;
+    }
+}
+
+@media screen and (min-width: 360px) and (min-height: 550px){
+    .info div{
+        display: none;
+    }
+
+    .cont{
+        width: 80px;
+        height: 80px;
+        left: 0px;
+    }
+
+}
+
+/*
+
+@media screen and (max-height: 720px) and (max-width: 920px){
+
+    #maxMin{
+        width: 100%;
+    }
+
+    #valores{
+        height: 600px;
+        grid-template-rows: 1fr 1fr 1fr;
+
+    }
+
+    .fichas{
+        width: 75px;
+        height: 75px;
+        font-size: 1.7em;
+    }
+
+    #fichas{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    #info div, button{
+        width: 130px;
+    }
+
+    #operacao button{
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 600px){
+    
+    #botoes{
+        position: inherit;
+    }
+
+    #prin{
+        grid-template-rows: 2fr 1fr 2fr;
+    }
+
+    #usuario, #ad{
+        display: grid;
+        column-gap: 10px;
+    }
+
+    .info:nth-child(1){
+        background-color: purple;
+    }
+
+    .emAposta{
+        display: none !important;
+    }
+
+    .cont{
+        height: 70px;
+        width: 70px;
+        position: static;
+        grid-column: 2/2;
+    }
+
+    .info{
+        position: static;
+        grid-row: 1 / 1;
+        width: min-content;
+    }
+
+    #mao, #maoAd{
+        grid-column: 1 / 3;
+        margin: auto;
+        height: min-content;
+    }
+
+    .info > div{
+        height: 80px;
+        width: 140px;
+    }
+
+    .textoApoio{
+        top: 4px;
+    }
+
+    .cartas{
+        width: 80px;
+        height: 130px;
+    }
+
+}
+
+@media screen and (max-width:300px){
+    #escolha{
+        margin: 10px 15px;
+        width: min-content;
+    }
+
+    #centro{
+        width: 100vw;
+    }
+    
+}
+*/
+@media screen and (max-height: 570px){
+    #usuario, #ad{
+        border-width: 3px;
+    }
+} 

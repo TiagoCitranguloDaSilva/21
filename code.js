@@ -30,7 +30,8 @@ var contAd = document.getElementById('adver');
 document.getElementById('montante').innerHTML = '$0';
 
 // Coloca o texto de aposta mínima e máxima
-document.getElementById('maxMin').innerHTML = 'Aposta mínima: ' + minimo + ' - Aposta máxima: ' + maximo;
+document.getElementById('max').innerHTML = 'Aposta máxima: ' + maximo;
+document.getElementById('min').innerHTML = 'Aposta mínima: ' + minimo;
 
 // O jogo vai ter 8 baralhos
 for(let e = 0; e < 8; e++){
