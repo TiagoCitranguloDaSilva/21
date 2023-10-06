@@ -12,12 +12,17 @@
     --altCarta: 170px;
 }
 
+html{
+    overflow: hidden;
+}
+
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #016d22;
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .cartas{
@@ -463,9 +468,9 @@ button{
     /* Tela base 
     Entre 650-1020 x 700-1030 */
     
-    body{
+    /* body{
         background-color: orange;
-    }
+    } */
 
     #botoes{
         position: inherit;
@@ -502,9 +507,9 @@ button{
 @media screen and (max-width: 1020px) and (min-width: 650px) and (min-height: 530px) and (max-height: 700px){
     /* Tela base
     Entre 650-1020 x 530-600 */
-    body{
+    /* body{
         background-color: purple;
-    }
+    } */
     #botoes{
         position: inherit;
     }
@@ -544,9 +549,9 @@ button{
     /* Tela base
     400-650 x 700-1030 */
 
-    body{
+    /* body{
         background-color: brown;
-    }
+    } */
 
     #botoes{
         position: inherit;
@@ -603,9 +608,9 @@ button{
 @media screen and (min-width: 300px) and (max-width: 650px) and (min-height: 440px) and (max-height: 700px){
     /* Tela base
     300-650 x 440-700 */
-    body{
+    /* body{
         background-color: yellow;
-    }
+    } */
 
     #botoes{
         position: inherit;
@@ -628,12 +633,13 @@ button{
 
 }
 
+/* Feito */
 @media screen and (max-width: 650px) and (max-height: 440px){
     /* Tela base
-    300-650 x -440 */
-    body{
+    -650 x -440 */
+    /* body{
         background-color: cyan;
-    }
+    } */
 
     #usuario, #ad{
         border-width: 3px;
@@ -670,61 +676,182 @@ button{
 
 }
 
-
-/* @media screen and (max-width: 920px) {
-
-    #fichas button{
-        margin: 5px;
-    }
-
-    #atual, #operacao{
-        grid-row: 2 / 3;
-    }
-
-
-    #finalizarAposta{
-        grid-row: 1 / 3;
-        grid-column: 2;
-    }
-
-    #info{
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-        justify-content: center;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
-
-    #info div{
-        width: 140px;
-        height: 90px;
-    }
-
-    #info div p{
-        top: 5px;
+/* Feito */
+@media screen and (min-width: 590px) and (max-width: 940px) and (min-height: 200px) and (max-height: 1000px){
+    /* Area aposta
+    590-940 x 600-1000 */
+    #valores{
+        /* background-color: red; */
+        grid-template-rows: 1fr 1fr 2fr;
+        width: 450px;
     }
 
     #maxMin{
-        display: grid;
+        width: 450px;
+        margin: auto;
+        text-align: center;
+    }
+
+    #fichas button{
+        margin: 0;
+    }
+
+    #info{
         grid-template-rows: 1fr 1fr;
-        height: 120px;
-        width: 500px;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
-    #valores{
-        width: 500px;
-        gap: 0px;
-        grid-template-rows: 1fr 120px 2fr;
+    #info div{
+        width: 110px;
+        height: 77px;
     }
 
-    #operacao button{
-        height: 45px;
+    #info div p:nth-child(1){
+        top: 5px;
+    }
+
+    #info div p:nth-child(2){
+        position: absolute;
+        bottom: 5px;
+    }
+
+    div#operacao button{
+        height: 39px;
+    }
+
+    #finalizarAposta{
+        grid-area: 1 / 2 / 3 / 2;
+    }
+
+    #maxMin{
+        font-size: 1.9em;
     }
 
 }
 
-@media screen and (max-width: 700px) and (min-height: 745px){
+/* Feito */
+@media screen and (min-width: 400px) and (max-width: 590px) and (min-height: 600px) and (max-height: 900px){
+    /* Tela aposta
+    400-590 x 600-900 */
+    #valores{
+        /* background-color: green; */
+        grid-template-rows: 1fr 1fr 2fr;
+        width: 360px;
+    }
+
+    #maxMin{
+        width: 360px;
+        margin: auto;
+        font-size: 1.9em;
+        text-align: center;
+    }
+
+    #fichas button{
+        margin: 0;
+        width: 85px;
+        height: 85px;
+    }
+
+    #info{
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        width: min-content;
+        column-gap: 10px;
+        margin: auto;
+    }
+
+    #info div{
+        width: 110px;
+        height: 77px;
+    }
+
+    #info div p:nth-child(1){
+        top: 5px;
+    }
+
+    #info div p:nth-child(2){
+        position: absolute;
+        bottom: 5px;
+    }
+
+    div#operacao button{
+        height: 39px;
+    }
+
+    #finalizarAposta{
+        grid-area: 1 / 2 / 3 / 2;
+        width: 105px;
+        height: 65px;
+    }
+
+}
+
+/* Feito */
+@media screen and (min-width: 300px) and (max-width: 400px) and (min-height: 550px) and (max-height: 700px){
+    /* Tela aposta */
+    /* 300-400 x 550-700 */
+    #valores{
+        /* background-color: blue; */
+        grid-template-rows: 90px 170px 2fr;
+        width: 250px;
+    }
+
+    #maxMin{
+        width: 250px;
+        margin: auto;
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    #fichas button{
+        margin: 0;
+        width: 75px;
+        height: 75px;
+    }
+
+    #fichas{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        column-gap: 10px;
+    }
+
+    #info{
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        width: min-content;
+        column-gap: 10px;
+        margin: auto;
+    }
+    
+    #info div{
+        width: 110px;
+        height: 77px;
+    }
+
+    #info div p:nth-child(1){
+        top: 5px;
+    }
+
+    #info div p:nth-child(2){
+        position: absolute;
+        bottom: 5px;
+    }
+
+    div#operacao button{
+        height: 39px;
+    }
+    .saldo{
+        grid-row: 1 / 2;
+    }
+
+    #finalizarAposta{
+        grid-area: 3 / 1 / 4 / 3;
+        width: 105px;
+        height: 65px;
+    }
+}
+
+/* @media screen and (max-width: 700px) and (min-height: 745px){
     #fichas{
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
