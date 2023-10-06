@@ -18,6 +18,7 @@ body{
     width: 100vw;
     height: 100vh;
     color: black;
+    position: relative;
 }
 
 .cartas{
@@ -138,7 +139,7 @@ main{
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     backdrop-filter: blur(10px);
     background-color: #00000056;
@@ -597,6 +598,10 @@ button{
         top: 5px;
     }
 
+    #msg{
+        font-size: 4em;
+    }
+
 
 
 }
@@ -630,6 +635,24 @@ button{
     .cartas{
         width: 80px;
         height: 140px;
+    }
+
+    #msg{
+        font-size: 3em;
+    }
+
+    #menu{
+        width: 140px;
+        height: 140px;
+    }
+
+    #menu button{
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: min-content;
+        height: 60px;
     }
 
 }
@@ -677,6 +700,24 @@ button{
     .cartas{
         width: 80px;
         height: 140px;
+    }
+
+    #msg{
+        font-size: 2.6em;
+    }
+
+    #menu{
+        width: 140px;
+        height: 140px;
+    }
+
+    #menu button{
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: min-content;
+        height: 60px;
     }
 
 }

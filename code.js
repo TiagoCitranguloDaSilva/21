@@ -625,6 +625,9 @@ function adicionar(lugar){
 // Uma função chamada ao terminar o jogo, uma 'tela final', que recebe uma mensagem, o vencedor e se deve recarregar a página
 function telaFinal(texto, win, reload = false){
 
+    maoUsuario.innerHTML = '';
+    maoAdversario.innerHTML = '';
+
     // Se o adversário ganhou
     if(win == 'ad'){
 
