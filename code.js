@@ -365,6 +365,9 @@ function darCartas(){
     // Deixa o mouse interagir com a tela toda
     main.style.pointerEvents = 'all';
 
+    document.getElementById('btn+1').style.backgroundColor = '#87cefa'
+    document.getElementById('btnStop').style.backgroundColor = '#87cefa'
+
 }
 
 // Função que retorna um item aleatório da array 'cartasPossiveis'
@@ -385,7 +388,7 @@ function criarCarta(escolha, classes, removerCartasPossiveis = false){
     valores = cartasPossiveis[escolha];
 
     // Coloca o número do baralho como id 
-    carta.id = valores[2];
+    // carta.id = valores[2];
 
     // Adiciona a classe 'cartas' na carta
     carta.classList.add('cartas');
@@ -441,8 +444,8 @@ function contagem(lugar){
                 // Se for 'A'
                 case 'A':
 
-                    // O valor é 11 
-                    valor = 11;
+                    // O valor é 1
+                    valor = 1;
                     break;
 
                 // Se for 'Q', 'J' ou 'K'
@@ -465,6 +468,30 @@ function contagem(lugar){
             // Vai somar o valor na variável 'soma'
             soma += Number(valor);
 
+        }
+    }
+
+    if(lugar.children.length == 2){
+        let aPos = -1
+        for(let c = 0; c < 2; c++){
+            if(lugar.children[c].innerHTML == 'A'){
+                // alert('A posição do A é : '+c)
+                aPos = c;
+            }
+        }
+        if(aPos != -1){
+            switch(aPos){
+                case 0:
+                    if(lugar.children[1].innerHTML == 'K' || lugar.children[1].innerHTML == 'Q' || lugar.children[1].innerHTML == 'J' || lugar.children[1].innerHTML == '10'){
+                        soma = 21
+                    }
+                    break;
+                case 1:
+                    if(lugar.children[0].innerHTML == 'K' || lugar.children[0].innerHTML == 'Q' || lugar.children[0].innerHTML == 'J' || lugar.children[1].innerHTML == '10'){
+                        soma = 21
+                    }
+                    break;
+            }
         }
     }
 
@@ -534,6 +561,9 @@ function stop( notAd = false){
 
     // Tira a possibilidade de interagir com a tela
     main.style.pointerEvents = 'none';
+
+    document.getElementById('btn+1').style.backgroundColor = '#929292'
+    document.getElementById('btnStop').style.backgroundColor = '#929292'
 
     // Se for o usuário que tiver parado de jogar
     if(!notAd){
@@ -628,8 +658,8 @@ function telaFinal(texto, win, reload = false){
     maoUsuario.innerHTML = '';
     maoAdversario.innerHTML = '';
 
-    // Se o adversário ganhou
-    if(win == 'ad'){
+    // Se o adversário ganhou ou deu empate
+    if(win == 'ad' || win == 'emp'){
 
         // O adversário ganha o dinheiro da aposta
         saldoAd += (apostaFeita*2);
@@ -639,15 +669,6 @@ function telaFinal(texto, win, reload = false){
 
         // O usuário ganha o dinheiro da aposta
         saldoUser += (apostaFeita*2);
-
-    // Se der empate
-    }else if(win == 'emp'){
-
-        // Todos recebem seu dinheiro de volta
-        saldoUser += apostaFeita;
-
-        // Todos recebem seu dinheiro de volta
-        saldoAd += apostaFeita;
 
     }
 
@@ -723,7 +744,7 @@ function final(){
         }else if(Number(contAd.innerHTML) == Number(contUser.innerHTML)){
 
             // Chama a tela final, depois de 1 segundo, dizendo que o ninguem ganhou e teve um empate
-            setTimeout(telaFinal, 1000, 'Houve um empate!', 'emp');
+            setTimeout(telaFinal, 1000, 'Houve um empate, a casa ganhou!', 'emp');
 
         }
     }
@@ -732,6 +753,50 @@ function final(){
 // Função chamada ao clicar em 'Próxima rodada'
 function novoJogo(){
 
+    // O jogo vai ter 8 baralhos
+    for(let e = 0; e < 8; e++){
+
+        // Cada baralho tem 4 naipes
+        for(let d = 0; d < naipes.length; d++){
+
+            // Cada naipe tem 13 cartas
+            for(let c = 1; c <= 13; c++){
+
+                // Se o valor da carta
+                switch(c){
+
+                    // For 1, o valor vira 'A'
+                    case 1:
+                        valor = 'A';
+                        break;
+
+                    // For 11, o valor vira 'Q'
+                    case 11:
+                        valor = 'Q';
+                        break;
+
+                    // For 12, o valor vira 'J'
+                    case 12:
+                        valor = 'J';
+                        break;
+
+                    // For 13, o valor vira 'K'
+                    case 13:
+                        valor = 'K';
+                        break;
+
+                    // Senão o valor recebe o valor da variável c
+                    default:
+                        valor = c;
+                }
+
+                // Adiciona na array 'cartasPossiveis' uma array com o [naipe da carta, valor da carta, de qual dos 8 baralhos ela é]
+                cartasPossiveis.push([naipes[d], valor, e+1]); 
+
+            }
+        }
+
+    }
     // Espera um tempinho
     setTimeout(()=>{
 
