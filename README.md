@@ -53,7 +53,7 @@ Ganha aquele com a maior soma sem ultrapassar 21, após o vencedor ter sido decl
 O jogo conta com um sistema de escolha de cartas de forma aleatória onde em cada rodada você pode escolher pescar mais uma carta ou parar e deixar o adversário (o PC) jogar,
 além disso, o jogo tem um quadrado alaranjando que fica na esquerda que já faz a soma de suas cartas para que o usuário não tenha que ficar fazendo conta.
 O jogo para automaticamente caso você consiga 21 e já lhe dá a vitória, o jogo também para se você ultrapassar 21, mas desta vez ele te dá a derrota, e caso ambos os lados decidam parar (o usuário e o PC) ganha aquele que chegar mais perto de 21.
-O sistema de apostas soma valores, ou seja, caso clique na ficha de $ 5 duas vezes, vão ser $ 10 no total.
+O sistema de apostas soma valores, ou seja, caso clique na ficha de$ 5 duas vezes, vão ser $10 no total.
 Na tela de apostas tem um botão de mais e um de menos:
 
 ![Botão mais e menos](https://github.com/TiagoCitranguloDaSilva/assets/blob/main/21/BotaoMaisMenos.png)
