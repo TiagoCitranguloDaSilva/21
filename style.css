@@ -3,6 +3,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 :root{
@@ -19,6 +20,7 @@ body{
     height: 100vh;
     color: black;
     position: relative;
+    overflow: hidden;
 }
 
 .cartas{
@@ -271,6 +273,7 @@ button{
     justify-content: center;
     background-color: #00000056;
     top: 0;
+    left: 0;
 }
 
 #valores{
@@ -284,6 +287,7 @@ button{
     align-items: center;
     justify-content: center;
     border-top-color: #471a00;
+    padding: 0 15px;
 }
 
 #fichas{
@@ -423,7 +427,7 @@ button{
     border: 1px solid #3d1600;
     border-bottom: 4px solid #3d1600;
     color: rgb(180, 171, 162);
-    width: 900px;
+    width: 885px;
 }
 
 #maxMin p{

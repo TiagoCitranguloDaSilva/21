@@ -24,7 +24,7 @@ var pesca = document.getElementById('pesca');
 var contUser = document.getElementById('user');
 
 // Pega o contador de cartas do adversário
-var contAd = document.getElementById('adver');
+var contAd = document.getElementById('adversario');
 
 // Define o valor de aposta inicial como 0
 document.getElementById('montante').innerHTML = '$0';
