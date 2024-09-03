@@ -20,7 +20,6 @@ body{
     height: 100vh;
     color: black;
     position: relative;
-    overflow: hidden;
 }
 
 .cartas{
@@ -768,6 +767,17 @@ button{
         height: 60px;
     }
 
+}
+
+@media screen and (max-height: 650px){
+    .cont{
+        height: 70px;
+        width: 70px;
+    }
+
+    #informacoesUser > div, #informacoesAd > div{
+        height: 70px;
+    }
 }
 
 /* Feito */

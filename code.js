@@ -92,6 +92,22 @@ aposta();
 // Uma função que inicia a cadeia de eventos que pega as apostas
 function aposta(){
 
+    let elements = document.getElementsByClassName('cont');
+    let informacoesAd = document.getElementById("informacoesAd").children
+    let informacoesUser = document.getElementById("informacoesUser").children
+
+    // Loop through the elements and change their background color
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'none';
+    }
+    for (let i = 0; i < informacoesAd.length; i++) {
+        informacoesAd[i].style.display = 'none' 
+    }
+    for (let i = 0; i < informacoesUser.length; i++) {
+        informacoesUser[i].style.display = 'none' 
+    }
+
+
     // Toda vez que inicia a aposta, o botão de adicionar valores é selecionado por padrão
     botaoMais();
 
@@ -285,6 +301,20 @@ function finalizarAposta(){
 
     // Retira o valor da aposta do saldo do usuário
     saldoUser -= apostaFeita;
+
+    let elements = document.getElementsByClassName('cont');
+    let informacoesAd = document.getElementById("informacoesAd").children
+    let informacoesUser = document.getElementById("informacoesUser").children
+
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.display = 'flex';
+    }
+    for (let i = 0; i < informacoesAd.length; i++) {
+        informacoesAd[i].style.display = 'flex' 
+    }
+    for (let i = 0; i < informacoesUser.length; i++) {
+        informacoesUser[i].style.display = 'flex'
+    }
     
     // Começar o jogo de verdade, da as cartas usadas no jogo
     darCartas();
