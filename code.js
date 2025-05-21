@@ -288,13 +288,13 @@ function finalizarAposta(){
     let aposta = document.getElementById('valorApostaAd');
 
     // Coloca o valor dele como o valor da nova aposta
-    aposta.innerHTML = apostaFeita;
+    aposta.innerHTML = '$' + apostaFeita;
 
     // Pega o quadrado que mostra as apostas feita do usuário
     aposta = document.getElementById('valorApostaUser');
 
     // Coloca o valor dele como o valor da nova aposta
-    aposta.innerHTML = apostaFeita;
+    aposta.innerHTML = '$' + apostaFeita;
 
     // Retira o valor da aposta do saldo do adversário
     saldoAd -= apostaFeita;
