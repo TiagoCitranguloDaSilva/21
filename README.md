@@ -33,6 +33,7 @@ Para jogar 21 é preciso que a soma de suas cartas chegue a 21 ou o mais perto d
 Cada carta tem um número ou uma letra sendo os valores:
 
 A = 1 ou 11
+
 2, 3, 4, 5, 6, 7, 8, 9 e 10 = o respectivo número
 Q, J e K = 10
 
@@ -40,7 +41,7 @@ Q, J e K = 10
 
 ## Como jogar esse jogo
 
-Este jogo é dividido em rodadas, toda rodada funciona da seguinte maneira, começasse fazendo uma aposta dentro dos valores permitidos, ou seja, acima do mínimo e abaixo do máximo e um valor que a casa consiga pagar.
+Este jogo é dividido em rodadas, toda rodada funciona da seguinte maneira, começe fazendo uma aposta dentro dos valores permitidos, ou seja, acima do mínimo e abaixo do máximo e um valor que a casa consiga pagar.
 
 Na tela de aposta é possível ver o seu saldo e o da casa e também um indicador do valor que você quer apostar chamado montante.
 
