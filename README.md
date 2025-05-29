@@ -1,5 +1,6 @@
 # 21
 
+![GitHub License](https://img.shields.io/github/license/tiagocitrangulodasilva/21)
 # Sobre o projeto
 Este projeto contém um jogo de 21 (ou Blackjack) que foi feito por mim: Tiago Citrangulo da Silva. É um jogo totalmente jogável em computadores e em celulares.
 O jogo tem suas regras baseadas no modo em que alguns cassinos jogam, contendo até um sistema de apostas usando fichas sem valor real.
